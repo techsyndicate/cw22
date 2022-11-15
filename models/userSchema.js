@@ -6,9 +6,13 @@ const reqString = {
 }
 const userSchema = new Schema({
     name: reqString,
-    pin:{
+    password: reqString,
+    isBanned: {
+        type: Boolean,
+    },
+    role: {
         type: String,
-        default: '65124' 
+        default: 'Rookie'
     },
     location: {
         type: Array,
@@ -19,4 +23,4 @@ const userSchema = new Schema({
 })
 
 const User =  mongoose.model('userInfo', userSchema)
-model.exports= User
+module.exports= User

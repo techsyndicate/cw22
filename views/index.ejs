@@ -1,4 +1,13 @@
 <form action="/crack" method="post">
-    <input type="text" name="ans" id="ans" placeholder="">
+    <p>
+        <%= ques[0] %>
+    </p>
+    <% if (timer) {%>
+        YOU'VE <%= timer %> chances left.
+    <%} else  {%>
+        YOU'VE <%= timer %> chances .
+    <%}%>
+    <input type="text" name="ans" id="ans" placeholder="spill it">
+    <input type="hidden" name="anskey" id="anskey" value="<%= ques %>">
     <input type="submit" value="Let's Go!!">  
 </form>
