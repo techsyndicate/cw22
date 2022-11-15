@@ -2,6 +2,10 @@ const router = require('express').Router()
 const User = require('../models/userSchema')
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
+const {
+    ensureAuthenticated,
+    forwardAuthenticated
+} = require('../config/auth')
 
 router.get('/',(req,res)=>{
     questions = [
@@ -11,7 +15,8 @@ router.get('/',(req,res)=>{
         ['I work hard for this, i want you to', 'know that']
     ]   
     res.render('index',{
-        ques: questions[Math.floor(Math.random(0,questions.length))]
+        ques: questions[Math.floor(Math.random(0,questions.length))],
+        timer: 3
     })
 })
 router.post('/crack',(req,res)=>{
