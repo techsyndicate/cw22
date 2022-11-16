@@ -1,8 +1,16 @@
+<style>
+    body{
+        overflow-y: hidden !important;
+    }
+</style>
 <div class="login-div">
+    <h1>
+        Login
+    </h1>
     <%- include('./partials/errors') %>
     <form action="/login" method="post" autocomplete="OFF">
-        <input type="text" name="name" placeholder="codename" id="name" required>
+        <input type="text" name="name" placeholder="codename" id="name" required> <br>
         <input type="password" name="password" placeholder="password" id="password" required>
-        <input type="submit"></input>
+        <input type="submit" value="Login" class="submit"></input>
     </form>
 </div>

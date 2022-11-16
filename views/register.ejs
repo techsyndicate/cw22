@@ -1,9 +1,17 @@
 <div class="register-div">
+    <h1>
+        Register
+    </h1>
     <form action="/register" method="POST" autocomplete="OFF">
         <%- include('./partials/errors') %>
-        <input type="text" name="name" placeholder="Codename" id="name" value="" required>
-        <input type="password" name="password" placeholder="password" id="password" required>
-        <input type="password" name="password2" placeholder="confirm password" id="password2" required>
-        <input type="submit"></input>
+        <input type="text" name="name" placeholder="Codename" id="name" value="" required> <br>
+        <input type="password" name="password" placeholder="Password" id="password" required> <br>
+        <input type="password" name="password2" placeholder="Confirm Password" id="password2" required><br>
+        <select id="tasks" name="roles" required>
+            <option value="none">Select Role</option>
+            <option value="rookie">Rookie</option>
+            <option value="ninja">Ninja Assasin</option>
+        </select>
+        <input type="submit" value="Register" class="submit"></input>
     </form>
 </div>

@@ -58,7 +58,9 @@ router.post('/register',(req,res)=>{
         name, 
         password,
         password2,
+        roles
     } = req.body
+    console.log(req.body)
     let errors = []
     if (password.length < 6) {
         errors.push({msg: 'Password must be at least 6 characters'})
@@ -79,6 +81,7 @@ router.post('/register',(req,res)=>{
             errors,
             name,
             password,
+            role: roles,
             password2,
         })
     } else {
@@ -91,12 +94,14 @@ router.post('/register',(req,res)=>{
                     name,
                     password,
                     password2,
+                    role: roles,
                 })
             }
             else{
                 const newUser = new User({
                     name,
-                    password
+                    password,
+                    role: roles
                 })
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {

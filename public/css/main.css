@@ -92,7 +92,7 @@ body{
 .task-div form{
     margin-top: 2.5vw;
 }
-.task-div .task-form form input,.task-div .task-form form textarea,.task-div .task-form form select{
+.task-div .task-form form input,.task-div .task-form form textarea,.task-div .task-form form select, .register-div form select{
     font-family: 'Outfit', sans-serif;
 }
 .task-form .form-flex{
@@ -127,7 +127,7 @@ body{
     color: #eee;
     font-size: 1vw;   
 }
-.task-form .form-flex select{
+.task-form .form-flex select,.register-div form select{
     width: 22.5vw;
     height: 2.25vw;
     padding-left: 1vw;
@@ -141,18 +141,18 @@ body{
     transition: all 0.5s ease;
     padding-right: 1vw !important;
 }
-.task-form select option{
+.task-form select option, .register-div form select option{
     font-weight: bold;
     padding:10px;
 }
-.task-form .form-flex select:focus{
+.task-form .form-flex select:focus, .register-div form select:focus{
     outline: none;
     background: #161616;
     border-radius: 1vw;
     width: 25vw;
     border:none;
 }
-.task-form .form-flex select option{
+.task-form .form-flex select option, .register-div form select option{
     margin-top: 5vw;
     border-radius: 10px;
 } 
@@ -269,5 +269,55 @@ body{
 }
 .user-admin-info{
     position:absolute;
-
+}
+.login-div form input, .register-div form input{
+    font-family: 'Outfit', sans-serif;
+}
+.login-div  input, .register-div input{
+    width: 22.5vw;
+    height: 2.25vw;
+    padding-left: 1vw;
+    font-size: 1vw;
+    margin-top: 1vw;
+    border:none;
+    border-bottom: 2px solid #EFB546;
+    background: transparent;
+    font-weight: bold;
+    transition: all 0.5s ease;
+}
+.login-div input:focus,.register-div input:focus{
+    outline:none;
+    width: 25vw;
+}
+.login-div input::placeholder,.register-div input::placeholder{
+    color: #eee;
+    font-size: 1vw;   
+}
+.login-div{
+    margin: 15vw 3.5vw;
+}
+.login-div .submit,
+.register-div .submit{
+    background: #EFB546;
+    width: 20vw;
+    height:2.75vw;
+    margin-top: 1vw;
+    border:none;
+    border-radius: 10px;
+    font-size: 1.25vw;
+    cursor: pointer;
+    font-weight: bold;
+    display: block;
+    margin-top: 2.5vw;
+    transition: all 0.4s ease;
+}
+.login-div h1,.register-div h1{
+    font-size: 5vw;
+}
+.register-div {
+    margin: 10vw 3.5vw;
+}
+.login-div form input,
+.register-div form input{
+    color: #eee;
 }

@@ -10,9 +10,17 @@ const userSchema = new Schema({
     isBanned: {
         type: Boolean,
     },
+    reward : {
+        type: Number,
+        default: 100
+    },
+    exp: {
+        type: Number,
+        default: 10
+    },
     role: {
         type: String,
-        default: 'Rookie'
+        default: 'rookie'
     },
     location: {
         type: Array,
