@@ -1,0 +1,89 @@
+<script src="https://apis.mapmyindia.com/advancedmaps/v1/<%= map %>/map_load?v=1.5"></script>
+
+<script>
+    var map = null,
+        markers = [],
+        users = [],
+        currentPosition=[],
+        currentPositionMarker = null;
+    function displayAvailableShopkeepersOnMap(){
+        fetch('/admin/user/fetch',{
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(async (res)=>{
+            const data = await res.json();
+            console.log(data)
+            navigator.geolocation.getCurrentPosition(showPosition)
+        })
+        .catch(err=>console.log(err))
+    }
+    function showPosition(position){
+            currentPosition = [position.coords.latitude, position.coords.longitude];
+            map = new MapmyIndia.Map('map',{
+                center: currentPosition,
+                zoomControl: true,
+                hybrid: true, 
+            })   
+            function fitMarkers(position){
+                var maxLat = position[0],
+                    minLat = position[0],
+                    maxLng = position[1],
+                    minLng = position[1],
+                    southWest = L.latLng(maxLat, maxLng),
+                    northEast = L.latLng(minLat, minLng),
+                    bounds  = L.latLngBounds(southWest, northEast);
+                map.fitBounds(bounds)
+            }
+            function addMarker(position, icon, draggable, title){
+                var marker = L.marker(position,{
+                    icon: icon,
+                    draggable: draggable,
+                    title: title
+                })
+
+                map.addLayer(marker)
+                marker.on('click',async (e)=>{
+                    fitMarkers(position)
+                    window.open(`/admin/userInfo/${users.id}`)
+                })
+                return marker;
+            }
+            function addCurrentMarker(){
+                var icon = L.icon({
+                    iconUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 15],
+                    popupAnchor: [-5, -15]
+                })
+                var position = new L.latLng(currentPosition[0], currentPosition[1])
+                var marker = addMarker(position, icon, false, 'You are here')
+            }
+            function addShopkeeperMarkers(){
+                users.forEach(user=>{
+                    var icon = L.icon({
+                        iconUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
+                        iconRetinaUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
+                        iconSize: [30, 30],
+                        iconAnchor: [15, 15],
+                        popupAnchor: [-5, -15]
+                    })
+                    var position = new L.latLng(user.location[0], user.location[1])
+                    var marker = addMarker(position, icon, false, user.name)
+                })
+            }
+            addCurrentMarker()
+            addShopkeeperMarkers()            
+        }
+    displayAvailableShopkeepersOnMap()
+</script>
+<style>
+    #map{
+        height: 50vh;
+        width: 50vh;
+    }
+</style>
+<div id="map"></div>
