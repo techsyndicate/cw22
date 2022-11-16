@@ -26,6 +26,10 @@ const userSchema = new Schema({
     location: {
         type: Array,
         default: [0,0]
+    },
+    assignedTasks:{
+        type:Array,
+        default: []
     }
 },{
     timestamps: true

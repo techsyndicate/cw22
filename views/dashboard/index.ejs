@@ -25,9 +25,37 @@
 <%- include('../partials/nav.ejs') %>
 <div class="user-task-div">
     <h1>Welcome <%= user.name %></h1>
+    <h2 style="margin: 1.5vw 3.5vw;">Weekly tasks,</h2>
+    <div class="task-display">
+        <% if(tasks.length > 0) { %>
+            <% for (var i = 0; i < tasks.length; i++){ %>
+                <div class="card">
+                    <h3>
+                        <%= tasks[i].title %>
+                    </h3>
+                    <p>
+                        <%= tasks[i].description  %>
+                    </p>
+                    <p style="margin-top: 2.5vw;">
+                        EXP: <%= tasks[i].exp %> REWARD: <%= tasks[i].reward %>
+                    </p>
+                    <form action="/dashboard/assign/<%= tasks[i].id %>" method="post">
+                        <input type="hidden" name="task" value="<%= tasks[i].id %>">
+                        <input type="submit" value="Assign" class="submit">
+                    </form>
+                </div>
+            <% } %>
+        <% } else { %>
+            <span style="margin-left: 2.5vw;">
+                No Jobs for you right now 
+            </span>
+        <% }%>
+    </div>
+    <div class="user-tasks"></div>
 </div>
 <div class="poster-div">
     <h1>
         Events
     </h1>
+    <img src="../assets/poster1.png" alt="">
 </div>

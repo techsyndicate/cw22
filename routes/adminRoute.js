@@ -9,7 +9,7 @@ router.get('/',(req,res)=>{
 })
 
 router.get('/user/fetch',(req,res)=>{
-    User.find({}).then((users) => {
+    User.find({isBanned:false}).then((users) => {
         res.json({users})
         console.log(users)
     }).catch((err) => console.log(err))

@@ -1,0 +1,68 @@
+<%- include('../partials/nav.ejs') %>
+<div class="shop-div">
+    <center>
+        <h1 style="font-size: 3.4vw;">
+            Workshop
+        </h1>
+    </center>
+    <h2 style="font-size: 1vw; margin: .5vw 2.5vw;">
+        Your Rewards: <%= user.reward %>
+    </h2>
+    <div class="shop-cards">
+        <div class="card">
+            <img src="https://media.discordapp.net/attachments/1041782780482289714/1042499496258572478/gun1.png?width=1043&height=586" alt="">
+            <center>
+                <h1 style="margin-left: 0;">
+                    MINI UZI SMG
+                </h1>
+                
+            </center>
+            <p style="margin-left: 0">
+                    PRICE: 250
+            </p>
+            <% if(user.reward<250){ %>
+                <button style="opacity: 0.4; cursor: not-allowed;" disabled>
+                    Purchase
+                </button>
+            <%} else {%>
+                <button>Purchase</button>
+            <% } %>
+        </div>
+        <div class="card">
+            <img src="https://media.discordapp.net/attachments/1041782780482289714/1042499496887722054/gun2.png?width=1043&height=586" alt="">
+            <center>
+                <h1 style="margin-left: 0;">
+                    AUTO-PISTOL
+                </h1>
+                
+            </center><p style="margin-left: 0">
+                    PRICE: 350
+                </p>
+                <% if(user.reward<500){ %>
+                <button style="opacity: 0.4;cursor: not-allowed;" disabled>
+                    Purchase
+                </button>
+                <%} else {%>
+                    <button>Purchase</button>
+                <% } %>
+        </div>
+        <div class="card">
+            <img src="https://media.discordapp.net/attachments/1041782780482289714/1042499497206480946/gun3.png?width=1043&height=586" alt="">
+            <center>
+                <h1 style="margin-left: 0;cursor: not-allowed;">
+                    SNIPER RIFLE
+                </h1>
+            </center>
+            <p style="margin-left: 0">
+                PRICE: 750
+            </p>
+            <% if(user.reward<750){ %>
+                <button style="opacity: 0.4;" disabled>
+                    Purchase
+                </button>
+                <%} else {%>
+                    <button>Purchase</button>
+                <% } %>
+        </div>
+    </div>
+</div>
