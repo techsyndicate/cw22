@@ -1,0 +1,246 @@
+@font-face {
+    font-family: 'carentro';
+    src: url("../font/Carentro\ DEMO.otf");
+}
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #EFB546;
+    border-radius: 10px;
+  }
+body{
+    background: #161616;
+    color: #eee;
+    font-family: 'carentro',sans-serif;
+}
+/*admin*/
+.admin-nav{
+    position: absolute;
+    background: rgba(0,0,0,0.3);
+    width: 27.5vw;
+    height: 90vh;
+    margin-left: 2.5vw;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 2.5vw;
+}
+.admin-nav h1{
+    margin-top: 5vw;
+    font-size: 3.5vw;
+    color: #EFB546;
+}
+.admin-nav ul{
+    list-style: none;
+}
+.admin-nav ul li a{
+    text-decoration: none;
+    font-size: 1.25vw;
+    letter-spacing: 1px;
+    color: #c2a67f;
+    font-weight: bolder;
+
+}
+.admin-nav img{
+    width: 15vw;
+    margin-top: 2.5vw;
+}
+.admin-nav ul li{
+    margin-top: 1vw;
+}
+#map {
+    height: 90vh;
+    width: 65%;
+    margin-top: 2.5vw;
+    margin-left: 32.5vw;
+    border-radius: 10px;
+}
+.task-div,.tasks-div{
+    font-family: 'Outfit', sans-serif;
+    width: 65%;
+    height: 90vh;
+    margin-left: 32.5vw;
+    margin-top: 2.5vw;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+.task-div h1,
+.tasks-div h1{
+    text-align: center;
+    padding-top: 2.5vw;
+    font-size: 3.5vw;
+    color: #EFB546;
+}
+.task-div form{
+    margin-top: 2.5vw;
+}
+.task-div .task-form form input,.task-div .task-form form textarea,.task-div .task-form form select{
+    font-family: 'Outfit', sans-serif;
+}
+.task-form .form-flex{
+    display: flex;
+    margin-left: 3.5vw;
+}
+.task-form .form-flex .form-gp-1{
+    margin-left: 2.5vw;
+}
+.task-form label{
+    font-size: 1.25vw;
+    letter-spacing: 1px;
+    font-weight: bolder;
+}
+.task-form .form-flex input{
+    width: 22.5vw;
+    height: 2.25vw;
+    padding-left: 1vw;
+    font-size: 1vw;
+    margin-top: 1vw;
+    border:none;
+    border-bottom: 2px solid #EFB546;
+    background: transparent;
+    font-weight: bold;
+    transition: all 0.5s ease;
+}
+.task-form .form-flex input:focus{
+    outline:none;
+    width: 25vw;
+}
+.task-form .form-flex input::placeholder{
+    color: #eee;
+    font-size: 1vw;   
+}
+.task-form .form-flex select{
+    width: 22.5vw;
+    height: 2.25vw;
+    padding-left: 1vw;
+    font-size: 1vw;
+    color: #eee;
+    margin-top: 1.2vw;
+    border:none;
+    font-weight: bold;
+    border-bottom: 2px solid #EFB546;
+    background: transparent;
+    transition: all 0.5s ease;
+    padding-right: 1vw !important;
+}
+.task-form select option{
+    font-weight: bold;
+    padding:10px;
+}
+.task-form .form-flex select:focus{
+    outline: none;
+    background: #161616;
+    border-radius: 1vw;
+    width: 25vw;
+    border:none;
+}
+.task-form .form-flex select option{
+    margin-top: 5vw;
+    border-radius: 10px;
+} 
+.task-form .form-flex input{
+    color: #eee;
+}
+.task-form .form-textarea{
+    margin-left: 3.5vw;
+    margin-top: 3.5vw;
+}
+.task-form .form-textarea textarea{
+    margin-top: 1.5vw;
+    background-color: transparent;
+    width: 55vw;
+    border: none;
+    padding:10px;
+    color: #eee;
+    border-bottom:2px solid #EFB546;
+    font-size: 1vw;
+    font-weight: bold;
+    transition: all 0.5s ease ;
+}
+.task-form .form-textarea textarea:focus{
+    outline: none;
+    height: 7.5vw;
+}
+.task-form .form-textarea textarea::placeholder{
+    color: #eee;
+    font-size: 1vw;   
+}
+.task-form .submit{
+    background: #EFB546;
+    width: 25vw;
+    height:3.5vw;
+    margin-top: 1vw;
+    border:none;
+    border-radius: 10px;
+    font-size: 1.25vw;
+    cursor: pointer;
+    font-weight: bold;
+    display: block;
+    margin: auto;
+    margin-top: 2.5vw;
+    transition: all 0.4s ease;
+}
+.task-form .submit:hover{
+    transform: translateY(-5px);
+    box-shadow: rgba(0,0,0,0.3) 0px 0px 10px;
+}
+.grid{
+    display: grid;
+    grid-template-columns: repeat(3, 20vw);
+    width: 95%;
+    margin-top: 2.5vw;
+    margin-left: auto;
+}
+.blob{
+    overflow-y: scroll;
+    height: 15vw;
+    border-radius: 10px;
+    width: 17.5vw;
+    background: rgba(0,0,0,0.6);
+    margin-top: 1.5vw;
+}
+.blob h2{
+    font-size: 1.25vw;
+    font-weight: 600;
+    margin: 2.5vw 2vw;
+    letter-spacing: 1px;
+}
+.blob h4{
+    font-size: .75vw;
+    margin: -1.75vw 2vw;
+    color: #EFB546;
+}
+.blob p{
+    margin: 2.5vw 2vw;
+    width: 85%;
+}
+.blob a {
+    background: #EFB546;
+    color: #161616;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-align: center !important;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 2vw;
+    padding-left: 15px;
+    padding-right: 15px;
+}

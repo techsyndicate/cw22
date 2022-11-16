@@ -1,0 +1,38 @@
+<div class="admin-nav">
+    <img src="https://media.discordapp.net/attachments/1041782780482289714/1042331769984254012/Group_17.png" alt="">
+    <h1>
+        Adda
+    </h1>
+    <ul>
+        <ul>
+            <li><a href="/admin/">Home</a></li>
+            <li><a href="/admin/task">Add Assignment</a></li>
+        </ul>
+    </ul>
+</div>
+<div class="tasks-div">
+    <h1>
+        Tasks
+    </h1>
+    <div class="grid">
+        <% for (var i = 0; i < task.length; i++){ %>
+            <div class="blob">
+                <h2>
+                    <%= task[i]['title'] %>
+                </h2>
+                <h4>
+                    <i><%= task[i]['role'] %></i>   
+                </h4>
+                <p>
+                    <%= task[i]['description'] %> 
+                </p>
+                <a href="/admin/done">
+                    Done
+                </a> 
+                <a href="/admin/del" style="margin-left: 1vw;">
+                    Delete
+                </a>
+            </div>
+        <% } %>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="admin-nav">
+    <img src="https://media.discordapp.net/attachments/1041782780482289714/1042331769984254012/Group_17.png" alt="">
+    <h1>
+        Adda
+    </h1>
+    <ul>
+        <ul>
+            <li><a href="/admin/">Home</a></li>
+            <li><a href="/admin/view">View Assignment</a></li>
+        </ul>
+    </ul>
+</div>
+<div class="task-div">
+    <h1>
+        Add Tasks
+    </h1>
+    <div class="task-form">
+        <form action="/admin/task" method="post" >
+            <div class="form-flex">
+                <div class="form-gp">
+                    <label for="title">Task Name</label> <br>
+                    <input type="text" name="title" placeholder="Title" required>
+                </div>
+                <div class="form-gp-1">
+                    <label for="tasks">Assigned Roles</label> <br>
+                    <select id="tasks" name="roles" oninput="changeForm()" required>
+                        <option value="none">Select Role</option>
+                        <option value="rookie">Rookie</option>
+                        <option value="ninja">Ninja Assasin</option>
+                        <option value="right">Right Hand</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-flex" style="margin-top: 2.5vw;">
+                <div class="form-gp">
+                    <label for="">Reward</label> <br>
+                    <input type="number" name="reward" placeholder="reward" required>
+                </div>
+                <div class="form-gp" style="margin-left: 2.5vw;">
+                    <label for="">Exp Gained</label> <br>
+                    <input type="number" name="exp" placeholder="Experience" required>
+                </div>
+            </div>
+            <div class="form-textarea">
+                <label for="">Task Description</label>
+                 <br>
+                <textarea type="text"  name="description" placeholder="Description" required></textarea>
+            </div>
+            <input type="submit" value="Add task" class="submit">
+        </form>
+    </div>
+    
+</div>
