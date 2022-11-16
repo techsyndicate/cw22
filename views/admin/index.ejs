@@ -1,89 +1,105 @@
 <script src="https://apis.mapmyindia.com/advancedmaps/v1/<%= map %>/map_load?v=1.5"></script>
-
+<style>
+    #map {
+        height: 90vh;
+        width: 65%;
+        margin-top: 2.5vw;
+        margin-left: 32.5vw;
+        border-radius: 10px;
+    }
+</style>
 <script>
-    var map = null,
-        markers = [],
-        users = [],
-        currentPosition=[],
-        currentPositionMarker = null;
-    function displayAvailableShopkeepersOnMap(){
-        fetch('/admin/user/fetch',{
+    var map = null;
+    var marker = [];
+    let users = [];
+    let currentPosition = [];
+    let currentMarkerLocation = [];
+    function getUsers() {
+        fetch('/admin/user/fetch', {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-            }
+            },
         })
-        .then(async (res)=>{
-            const data = await res.json();
-            console.log(data)
-            navigator.geolocation.getCurrentPosition(showPosition)
+        .then(async (res) => {
+            const resp = await res.json()
+            users = resp.users;
+            navigator.geolocation.getCurrentPosition(showPosition);
         })
-        .catch(err=>console.log(err))
     }
-    function showPosition(position){
-            currentPosition = [position.coords.latitude, position.coords.longitude];
-            map = new MapmyIndia.Map('map',{
-                center: currentPosition,
-                zoomControl: true,
-                hybrid: true, 
-            })   
-            function fitMarkers(position){
-                var maxLat = position[0],
-                    minLat = position[0],
-                    maxLng = position[1],
-                    minLng = position[1],
-                    southWest = L.latLng(maxLat, maxLng),
-                    northEast = L.latLng(minLat, minLng),
-                    bounds  = L.latLngBounds(southWest, northEast);
-                map.fitBounds(bounds)
-            }
-            function addMarker(position, icon, draggable, title){
-                var marker = L.marker(position,{
+    function showPosition(position) {
+        currentPosition = [position.coords.latitude, position.coords.longitude];
+        console.log(currentPosition);
+        map = new MapmyIndia.Map('map', {
+            center: currentPosition,
+            zoomControl: true,
+            hybrid: true
+        });
+    
+        function mapmyindia_fit_markers_into_bound(position) {
+            var maxlat = position.lat;
+            var maxlon = position.lng;
+            var minlat = position.lat;
+            var minlon = position.lng;
+            var southWest = L.latLng(maxlat, maxlon);
+            var northEast = L.latLng(minlat, minlon);
+            var bounds = L.latLngBounds(southWest, northEast);
+            map.fitBounds(bounds);
+        }
+    
+        function addMarker(position, icon, title, draggable, name) {
+            if (icon == '') {
+                var mk = new L.Marker(position, {
+                    draggable: draggable,
+                    title: name
+                });
+            } else {
+                var mk = new L.Marker(position, {
                     icon: icon,
                     draggable: draggable,
-                    title: title
-                })
-
-                map.addLayer(marker)
-                marker.on('click',async (e)=>{
-                    fitMarkers(position)
-                    window.open(`/admin/userInfo/${users.id}`)
-                })
-                return marker;
+                    title: name
+                });
             }
-            function addCurrentMarker(){
-                var icon = L.icon({
-                    iconUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
-                    iconSize: [30, 30],
-                    iconAnchor: [15, 15],
-                    popupAnchor: [-5, -15]
-                })
-                var position = new L.latLng(currentPosition[0], currentPosition[1])
-                var marker = addMarker(position, icon, false, 'You are here')
-            }
-            function addShopkeeperMarkers(){
-                users.forEach(user=>{
-                    var icon = L.icon({
-                        iconUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
-                        iconRetinaUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
-                        iconSize: [30, 30],
-                        iconAnchor: [15, 15],
-                        popupAnchor: [-5, -15]
-                    })
-                    var position = new L.latLng(user.location[0], user.location[1])
-                    var marker = addMarker(position, icon, false, user.name)
-                })
-            }
-            addCurrentMarker()
-            addShopkeeperMarkers()            
+            map.addLayer(mk);
+            mk.on("click", async function(e) {
+                mapmyindia_fit_markers_into_bound(position);
+                currentMarkerLocation = [position.lat, position.lng];
+                window.open(`/admin/userInfo/${title}`)
+            });
+            return mk;
         }
-    displayAvailableShopkeepersOnMap()
-</script>
-<style>
-    #map{
-        height: 50vh;
-        width: 50vh;
+    
+        function markCurrentLocation() {
+            var icon = L.icon({
+                iconUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
+                iconRetinaUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
+                iconSize: [30, 30],
+                popupAnchor: [-3, -15]
+            });
+            var position = new L.LatLng(currentPosition[0], currentPosition[1]);
+            var mk = addMarker(currentPosition, icon, 'Current Location', false);
+        }
+    
+        function loadAllUsers() {
+            var icon = L.icon({
+                iconUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
+                iconRetinaUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
+                iconSize: [45, 45],
+                popupAnchor: [-3, -15]
+            });
+            for (let i = 0; i < users.length; i++) {
+                var position = new L.LatLng(users[i].location[0], users[i].location[1]);
+                console.log(position)
+                marker.push(addMarker(position, icon, users[i]._id, false, users[i].name));
+            }
+        }
+        // markCurrentLocation();
+        loadAllUsers();
     }
-</style>
-<div id="map"></div>
+    getUsers()
+</script>
+<body>
+    <div id="map"></div>
+</body>
+</html>

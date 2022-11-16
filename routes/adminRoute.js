@@ -10,9 +10,14 @@ router.get('/',(req,res)=>{
 router.get('/user/fetch',(req,res)=>{
     User.find({}).then((users) => {
         res.json({users})
+        console.log(users)
     }).catch((err) => console.log(err))
 })
 router.get('/userInfo/:id', (req,res)=>{
-    Users.findById(req.params.id)
+    User.findById(req.params.id).then(user=>{
+        res.render('admin/user',{
+            user
+        })
+    })
 })
 module.exports = router
