@@ -1,0 +1,66 @@
+<div class="admin-nav">
+    <img src="https://media.discordapp.net/attachments/1041782780482289714/1042331769984254012/Group_17.png" alt="">
+    <h1>
+        Kabira
+    </h1>
+    <ul>
+        <li><a href="/admin/">HOME</a></li>
+        <li><a href="/admin/task">Add Job</a></li>
+        <li><a href="/admin/view">View Job</a></li>
+    </ul>
+</div>
+<div class="task-div" style="overflow: hidden;">
+    <h1>User Info</h1>
+    <div class="task-form" style="position: absolute; width: 65%; z-index: 100;">
+        <form action="/admin/user/update" method="post" >
+            <div class="form-flex">
+                <div class="form-gp">
+                    <label for="name">CodeName</label> <br>
+                    <input type="text" name="name" value="<%= user.name %>" required>
+                </div>
+                <div class="form-gp-1">
+                    <label for="tasks">Assigned Roles</label> <br>
+                    <select id="tasks" name="roles"  required>
+                        <% if (user.role == 'ninja') { %>
+                            <option value="rookie">Rookie</option>
+                            <option value="ninja" selected>Ninja Assasin</option>
+                            <option value="right">Right Hand</option>
+                        <% } else if (user.role == 'rookie') {%>
+                            <option value="rookie" selected>Rookie</option>
+                            <option value="ninja" >Ninja Assasin</option>
+                            <option value="right">Right Hand</option>
+                        <% } else if (user.role == 'right') { %>
+                            <option value="rookie">Rookie</option>
+                            <option value="ninja" >Ninja Assasin</option>
+                            <option value="right" selected>Right Hand</option>
+                        <% } %> 
+                    </select>
+                </div>
+            </div>
+            <div class="form-flex" style="margin-top: 2.5vw;">
+                <div class="form-gp">
+                    <label for="">Reward</label> <br>
+                    <input type="number" name="reward" value=<%= user.reward %> required>
+                </div>
+                <div class="form-gp" style="margin-left: 2.5vw;">
+                    <label for="">Exp Gained</label> <br>
+                    <input type="number" name="exp" value="<%= user.exp %>" required>
+                </div>
+            </div>
+
+            <input type="submit" value="Update" class="submit">
+        </form>
+        <form action="/admin/user/ban" method="get" style="margin-top: -2.5%;">
+            <input type="hidden" name="id" value="<%= user.id %>">
+            <input type="submit" value="BAN USER" class="ban">
+        </form>
+    </div>
+    <% if (user.role == 'ninja') { %>
+        <img src="/assets/ninja.svg" class="ninja" alt="">
+    <% } else if (user.role == 'rookie') {%>
+        <img src="/assets/rookie.svg" class="rookie" alt="">
+    <% } else if (user.role == 'right') { %>
+        <img src="/assets/right.svg" class="right" alt="">
+    <% } %> 
+    
+</div>

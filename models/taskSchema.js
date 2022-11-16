@@ -17,7 +17,11 @@ const taskSchema = new Schema({
     },
     role: {
         type: String,
-        default: 'Rookie'
+        default: 'rookie'
+    },
+    isDone:{
+        type: Boolean,
+        default: false
     }
 },{
     timestamps: true

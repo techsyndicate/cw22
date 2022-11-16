@@ -44,11 +44,59 @@ router.post('/task',(req,res)=>{
     res.redirect('/admin/view')
 })
 router.get('/view',(req,res)=>{
-    Task.find({}).then(Tasks=>{
+    Task.find({isDone: false}).then(Tasks=>{
         res.render('admin/tasks', {
             task: Tasks
         })
     })
-    
+})
+router.post('/del', async(req,res)=>{
+    var {
+        id 
+    } = req.body
+    Task.findOne({_id: id},(err,task)=>{
+        if (err) throw err;
+        task.remove()
+        res.redirect('/admin/view')
+    })
+})
+router.post('/done',async(req,res)=>{
+    var {
+        id 
+    } = req.body
+    Task.findOne({_id: id},(err,task)=>{
+        if (err) throw err;
+        task.isDone = true
+        task.save()
+        res.redirect('/admin/view')
+    })
+})
+router.post('/user/ban', async(req,res)=>{
+    var {
+        id
+    } = req.body
+    User.findOne({_id: id},(err,task)=>{
+        if (err) throw err;
+        user.isBanned = true;
+        user.save()
+        res.redirect('/admin/view')
+    })
+})
+router.post('/user/update',async(req,res)=>{
+    var {
+        name,
+        roles,
+        reward,
+        exp
+    } = req.body
+    User.findOne({name: name},(err,user)=>{
+        if (err) throw err;
+        user.name = name
+        user.role = roles
+        user.reward = reward 
+        user.exp = exp 
+        user.save()
+        res.redirect('/admin/userInfo/'+user.id)
+    })
 })
 module.exports = router

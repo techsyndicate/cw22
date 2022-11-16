@@ -73,7 +73,7 @@ body{
     margin-left: 32.5vw;
     border-radius: 10px;
 }
-.task-div,.tasks-div{
+.task-div,.tasks-div,.user-admin{
     font-family: 'Outfit', sans-serif;
     width: 65%;
     height: 90vh;
@@ -183,7 +183,8 @@ body{
     color: #eee;
     font-size: 1vw;   
 }
-.task-form .submit{
+.task-form .submit,
+.ban{
     background: #EFB546;
     width: 25vw;
     height:3.5vw;
@@ -211,7 +212,7 @@ body{
 }
 .blob{
     overflow-y: scroll;
-    height: 15vw;
+    height: 16.5vw;
     border-radius: 10px;
     width: 17.5vw;
     background: rgba(0,0,0,0.6);
@@ -232,7 +233,7 @@ body{
     margin: 2.5vw 2vw;
     width: 85%;
 }
-.blob a {
+.blob input {
     background: #EFB546;
     color: #161616;
     text-decoration: none;
@@ -242,5 +243,31 @@ body{
     border-radius: 10px;
     margin-left: 2vw;
     padding-left: 15px;
+    font-family: 'Outfit',sans-serif;
+    font-weight: 600;
     padding-right: 15px;
+    width: 6.5vw;
+    cursor: pointer;
+}
+ .rookie{
+    opacity: 0.15;
+    filter: grayscale(0.1);
+    margin-left: auto;
+    transform: scale(0.35);
+    margin-top: -25.5vw;}
+.ninja{
+    filter: grayscale(0.1);
+    opacity: 0.15;
+    transform: scale(0.15);
+    margin-top: -80vw;
+}
+.right{
+    filter: grayscale(0.1);
+    opacity: 0.15;
+    transform: scale(0.45);
+    margin-top: -15vw;
+}
+.user-admin-info{
+    position:absolute;
+
 }
