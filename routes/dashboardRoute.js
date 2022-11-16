@@ -4,6 +4,11 @@ const {ensureAuthenticated,forwardAuthenticated} = require('../config/auth')
 
 router.get('/',ensureAuthenticated,(req,res)=>{
     user = req.user
+    if (user.isBanned == true){
+        return res.status(400).json({
+            msg: 'You were banned'
+        })
+    }
     res.render('dashboard/index',{
         user
     })

@@ -9,6 +9,7 @@ const userSchema = new Schema({
     password: reqString,
     isBanned: {
         type: Boolean,
+        default: false
     },
     reward : {
         type: Number,
