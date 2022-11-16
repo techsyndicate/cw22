@@ -47,4 +47,9 @@ router.get('/shop', ensureAuthenticated,(req,res)=>{
         user: req.user
     })
 })
+router.get('/profile',ensureAuthenticated,(req,res)=>{
+    res.render('dashboard/profile',{
+        user: req.user
+    })
+})
 module.exports = router

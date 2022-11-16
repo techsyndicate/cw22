@@ -1,0 +1,37 @@
+<%- include('../partials/nav.ejs') %>
+<div class="task-div" style="overflow: hidden; width: 85%; margin-left: 9.5vw;">
+    <h1>User Info</h1>
+    <div class="task-form" style="position: absolute; width: 85%; z-index: 100;">
+        <form action="/admin/user/update" method="post" >
+            <div class="form-flex">
+                <div class="form-gp">
+                    <label for="name">CodeName</label> <br>
+                    <input type="text" name="name" value="<%= user.name %>" required>
+                </div>
+                <div class="form-gp-1">
+                    <label for="tasks">Assigned Roles</label> <br>
+                    <select id="tasks" name="roles"  required>
+                        <% if (user.role == 'ninja') { %>
+                            <option value="rookie">Rookie</option>
+                            <option value="ninja" selected>Ninja Assasin</option>
+                        <% } else if (user.role == 'rookie') {%>
+                            <option value="rookie" selected>Rookie</option>
+                            <option value="ninja" >Ninja Assasin</option>
+                            <% } %> 
+                    </select>
+                </div>
+            </div>
+            <input type="submit" value="Update" class="submit">
+        </form>
+        <br><br>
+        <a href="/logout" 
+        style="text-decoration: none;text-align: center; display: block; margin:auto; background: #EFB546; color: #111; padding:10px;border-radius:10px; font-weight: 500;width: 10vw;font-size: 1.2vw;">
+            Logout
+        </a>
+    </div>
+    <% if (user.role == 'ninja') { %>
+        <img src="/assets/ninja.svg" class="ninja" alt="">
+    <% } else if (user.role == 'rookie') {%>
+        <img src="/assets/rookie.svg" class="rookie" alt="">
+    <% } %> 
+</div>
