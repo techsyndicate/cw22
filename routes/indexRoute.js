@@ -15,29 +15,29 @@ router.get('/',(req,res)=>{
         ['I work hard for this, i want you to', 'know that']
     ]   
     res.render('index',{
-        ques: questions[Math.floor(Math.random(0,questions.length))],
+        ques: questions[Math.floor(Math.random() * 2) + 1],
         timer: 3
     })
 })
 router.post('/crack',(req,res)=>{
-    timer = 3 
     var {
-        ans,
-        anskey
+        ans
     } = req.body
     console.log(req.body)
-    if (anskey[1]  !== ans){
-        timer-=1
-        res.render('index',{
-            timer,
-            ques: anskey.split(',')
-        })
-    }
-    else if (ans == 'kabirbhalla'){
-        res.redirect('/admin')
-    }
-    else{
-        res.redirect('/main')
+    switch (ans) {
+        case 'irish blood':
+        case 'grow great':
+        case 'apologise':
+        case 'know that':
+            res.redirect('/main')
+            break;
+        case 'kabirbhalla':
+        case 'ishandas':
+            res.redirect('/admin')
+            break;
+        default:
+            res.redirect('/')
+            break;
     }
 })
 router.get('/main',(req,res)=>{
@@ -47,10 +47,6 @@ router.get('/login',(req,res)=>{
     res.render('login')
 })
 router.get('/register', async(req,res)=>{
-    // fetch('https://api.fungenerators.com/identity/person/name').then(async(res)=>{
-    //     const json = await res.json()
-    //     console.log(json)
-    // })
     res.render('register')
 })
 router.post('/register',(req,res)=>{

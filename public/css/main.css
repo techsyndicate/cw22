@@ -197,7 +197,8 @@ body{
     margin: auto;
 }
 .task-form .submit,
-.ban{
+.ban,
+.riddle .submit{
     background: #EFB546;
     width: 25vw;
     height:3.5vw;
@@ -459,4 +460,29 @@ body{
     box-shadow: rgba(0,0,0,0.3) 0px 0px 10px;
     font-weight: 600;
     margin-top: 37.5vw;
+}
+.riddle{
+    text-align: center;
+    margin-top: 15vw;
+}
+.riddle input{
+    width: 22.5vw;
+    height: 2.25vw;
+    padding-left: 1vw;
+    font-size:1vw;
+    margin-top: 1vw;
+    border:none;
+    border-bottom: 2px solid #EFB546;
+    background: transparent;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    color: #eee;
+}
+.riddle input:focus{
+    outline:none;
+    width: 25vw;
+}
+.riddle input::placeholder{
+    color: #eee;
+    font-size: 1vw;   
 }

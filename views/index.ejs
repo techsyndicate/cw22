@@ -1,13 +1,7 @@
-<form action="/crack" method="post">
-    <p>
+<form action="/crack" method="post" class="riddle">
+    <p style="font-size: 3.5vw;">
         <%= ques[0] %>
     </p>
-    <% if (timer) {%>
-        YOU'VE <%= timer %> chances left.
-    <%} else  {%>
-        YOU'VE <%= timer %> chances .
-    <%}%>
     <input type="text" name="ans" id="ans" placeholder="spill it">
-    <input type="hidden" name="anskey" id="anskey" value="<%= ques %>">
-    <input type="submit" value="Let's Go!!">  
+    <input type="submit" class="submit" value="Let's Go!!">  
 </form>
