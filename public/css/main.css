@@ -33,7 +33,7 @@ body{
     font-family: 'carentro',sans-serif;
 }
 /*admin*/
-.admin-nav{
+.admin-nav,.dash-nav{
     position: absolute;
     background: rgba(0,0,0,0.3);
     width: 27.5vw;
@@ -320,4 +320,36 @@ body{
 .login-div form input,
 .register-div form input{
     color: #eee;
+}
+.dash-nav ul li a img{
+    transform: scale(0.4);
+}
+.dash-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.user-task-div{
+    background: rgba(0,0,0,0.3);
+    width: 62.5%;
+    height: 90vh;
+    margin-top: 2.5vw;
+    margin-left: 9.5vw;
+    border-radius: 10px;
+    padding: 10px;
+}
+.poster-div{
+    background: rgba(0,0,0,0.3);
+    width: 22.5%;
+    height: 90vh;
+    margin-top: -42.35vw;
+    position: absolute;
+    margin-left: 75vw;
+    border-radius: 10px;
+    padding: 10px;
+}
+.user-task-div h1, .poster-div h1{
+    margin: 2.5vw 2.5vw;
+    letter-spacing: 1px;
 }

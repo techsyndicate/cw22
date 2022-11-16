@@ -6,7 +6,7 @@ router.get('/',ensureAuthenticated,(req,res)=>{
     user = req.user
     if (user.isBanned == true){
         return res.status(400).json({
-            msg: 'You were banned'
+            msg: 'Your access to the platform has been \'temporarily\' revoked. Please visit Kabir "The Executioner" Bhalla, he just wants to have a little chat.'
         })
     }
     res.render('dashboard/index',{
