@@ -429,3 +429,34 @@ body{
     transform: scale(0.75);
     margin: auto
 }
+.landing-div{
+    height: 100vh;
+    width: 100%;
+    background: url('../assets/landing.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.links{
+    display: block;
+    margin-left: auto;
+    width: 100%;
+}
+.landing-div a {
+    text-decoration: none;
+    background: #EFB546;
+    color: #111;
+    font-size: 1.24vw;
+    letter-spacing: 1px;
+    font-family: 'Outfit', sans-serif;
+    padding: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+    width: 20vw;
+    text-align: center;
+    margin-right: 2.5vw;
+    margin-top: 25vw;
+    box-shadow: rgba(0,0,0,0.3) 0px 0px 10px;
+    font-weight: 600;
+    margin-top: 37.5vw;
+}
