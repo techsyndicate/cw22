@@ -48,6 +48,6 @@ app.use('/admin', adminRouter)
 app.get('*',(req,res)=>{
     res.send('404')
 })
-app.listen(3000 || process.env.port,()=>{
+app.listen(8080 || process.env.port,()=>{
     console.log('app run')
 })

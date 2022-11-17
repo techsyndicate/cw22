@@ -1,106 +1,36 @@
-<script src="https://apis.mapmyindia.com/advancedmaps/v1/<%= map %>/map_load?v=1.5"></script>
-<script>
-    var map = null;
-    var marker = [];
-    let users = [];
-    let currentPosition = [];
-    let currentMarkerLocation = [];
-    function getUsers() {
-        fetch('/admin/user/fetch', {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(async (res) => {
-            const resp = await res.json()
-            users = resp.users;
-            navigator.geolocation.getCurrentPosition(showPosition);
-        })
-    }
-    function showPosition(position) {
-        currentPosition = [position.coords.latitude, position.coords.longitude];
-        console.log(currentPosition);
-        map = new MapmyIndia.Map('map', {
-            center: currentPosition,
-            zoomControl: true,
-            hybrid: true
-        });
-    
-        function mapmyindia_fit_markers_into_bound(position) {
-            var maxlat = position.lat;
-            var maxlon = position.lng;
-            var minlat = position.lat;
-            var minlon = position.lng;
-            var southWest = L.latLng(maxlat, maxlon);
-            var northEast = L.latLng(minlat, minlon);
-            var bounds = L.latLngBounds(southWest, northEast);
-            map.fitBounds(bounds);
-        }
-    
-        function addMarker(position, icon, title, draggable, name) {
-            if (icon == '') {
-                var mk = new L.Marker(position, {
-                    draggable: draggable,
-                    title: name
-                });
-            } else {
-                var mk = new L.Marker(position, {
-                    icon: icon,
-                    draggable: draggable,
-                    title: name
-                });
-            }
-            map.addLayer(mk);
-            mk.on("click", async function(e) {
-                mapmyindia_fit_markers_into_bound(position);
-                currentMarkerLocation = [position.lat, position.lng];
-                window.open(`/admin/userInfo/${title}`)
-            });
-            return mk;
-        }
-    
-        function markCurrentLocation() {
-            var icon = L.icon({
-                iconUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
-                iconRetinaUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
-                iconSize: [30, 30],
-                popupAnchor: [-3, -15]
-            });
-            var position = new L.LatLng(currentPosition[0], currentPosition[1]);
-            var mk = addMarker(currentPosition, icon, 'Current Location', false);
-        }
-    
-        function loadAllUsers() {
-            var icon = L.icon({
-                iconUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
-                iconRetinaUrl: 'https://media.discordapp.net/attachments/1041782780482289714/1042307157636436068/Group_9.png',
-                iconSize: [45, 45],
-                popupAnchor: [-3, -15]
-            });
-            for (let i = 0; i < users.length; i++) {
-                var position = new L.LatLng(users[i].location[0], users[i].location[1]);
-                console.log(position)
-                marker.push(addMarker(position, icon, users[i]._id, false, users[i].name));
-            }
-        }
-        // markCurrentLocation();
-        loadAllUsers();
-    }
-    getUsers()
-</script>
-<body>
-    <div class="admin-nav">
-        <img src="https://media.discordapp.net/attachments/1041782780482289714/1042331769984254012/Group_17.png" alt="">
+<div class="admin-nav">
+    <img src="https://media.discordapp.net/attachments/1041782780482289714/1042331769984254012/Group_17.png" alt="">
+    <h1>
+        Kabira
+    </h1>
+    <ul>
+        <li><a href="/admin/task">Add Job</a></li>
+        <li><a href="/admin/view">View Job</a></li>
+    </ul>
+</div>
+    <div class="tasks-div">
         <h1>
-            Kabira
+            Your Gang
         </h1>
-        <ul>
-            <li><a href="/admin/task">Add Job</a></li>
-            <li><a href="/admin/view">View Job</a></li>
-        </ul>
+        <div class="grid">
+            <% if(user.length > 0){ %>
+            <% for (var i = 0; i < user.length; i++){ %>
+    
+                <div class="blob">
+                    <h2>
+                        <%= user[i]['name'] %>
+                    </h2>
+                    <h4>
+                        <i><%= user[i]['role'] %></i>   
+                    </h4>
+                    <p>
+                        Location: <%= user[i]['location'] %>
+                    </p>
+                    <a style="margin-left: 2.25vw;" href="/admin/userInfo/<%= user[i]['id'] %>">More</a>
+                    <a href="https://www.google.com/maps/@<%= user[i].location[0] %>,<%= user[i].location[1] %>,15z" target="_blank">
+                        Location
+                    </a>                    
+                </div>
+            <% } %><% } %>
+        </div>
     </div>
-    <div id="map"></div>
-</body>
-</html>

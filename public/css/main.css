@@ -488,3 +488,13 @@ body{
     color: #eee;
     font-size: 1vw;   
 }
+.blob a {
+    text-decoration: none;
+    background: #EFB546;
+    color: #111;
+    padding: 10px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-left: 1.4vw;
+    border-radius: 10px;
+}

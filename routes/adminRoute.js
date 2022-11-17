@@ -2,20 +2,16 @@ const router = require('express').Router()
 const User = require('../models/userSchema')
 const Task = require('../models/taskSchema')
 router.get('/',(req,res)=>{
-    const UserData = User.find({})
-    res.render('admin/index',{
-        map : process.env.MAP
+    const UserData = User.find({isBanned:false}).then(user=>{
+        res.render('admin/index',{
+            user
+        })
     })
 })
 
-router.get('/user/fetch',(req,res)=>{
-    User.find({isBanned:false}).then((users) => {
-        res.json({users})
-        console.log(users)
-    }).catch((err) => console.log(err))
-})
 router.get('/userInfo/:id', (req,res)=>{
-    User.findById(req.params.id).then(user=>{
+    let id = req.params.id
+    User.findById(id).then(user=>{
         res.render('admin/user',{
             user
         })
