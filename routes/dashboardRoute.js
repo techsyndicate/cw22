@@ -9,7 +9,7 @@ router.get('/',ensureAuthenticated,(req,res)=>{
             msg: 'Your access to the platform has been \'temporarily\' revoked. Please visit Kabir "The Executioner" Bhalla, he just wants to have a little chat.'
         })
     }
-    const Tasks = Task.find({
+    Task.find({
         role: user.role,
         isDone: false
     },(err,tasks)=>{
@@ -31,12 +31,6 @@ router.post('/assign/:id',(req,res)=>{
         console.log('assigned')
         res.redirect('/dashboard/tasks')
     })
-    // User.find({name: req.user.name},(err,user)=>{
-    //     if (err) throw err;
-        
-    //     user.save()
-    //     res.redirect('/dashboard')
-    // })
 })
 router.get('/tasks',(req,res)=>{
     var tasks = req.user.assignedTasks

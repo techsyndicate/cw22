@@ -50,10 +50,7 @@
 
             <input type="submit" value="Update" class="submit">
         </form>
-        <form action="/admin/user/ban" method="get" style="margin-top: -2.5%;">
-            <input type="hidden" name="id" value="<%= user.id %>">
-            <input type="submit" value="BAN USER" class="ban">
-        </form>
+        <a href="/admin/user/ban/<%= user.id %>" style="text-align: center; padding-top:1vw; text-decoration: none; color: #111;" class="submit">Ban user</a>
     </div>
     <% if (user.role == 'ninja') { %>
         <img src="/assets/ninja.svg" class="ninja" alt="">

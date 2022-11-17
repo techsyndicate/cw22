@@ -67,11 +67,9 @@ router.post('/done',async(req,res)=>{
         res.redirect('/admin/view')
     })
 })
-router.post('/user/ban', async(req,res)=>{
-    var {
-        id
-    } = req.body
-    User.findOne({_id: id},(err,task)=>{
+router.get('/user/ban/:id', async(req,res)=>{
+    let id = req.params.id
+    User.findOne({_id: id},(err,user)=>{
         if (err) throw err;
         user.isBanned = true;
         user.save()

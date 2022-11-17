@@ -45,9 +45,6 @@ const indexRouter = require('./routes/indexRoute'),
 app.use('/', indexRouter)
 app.use('/dashboard', dashboardRouter)
 app.use('/admin', adminRouter)
-app.get('*',(req,res)=>{
-    res.send('404')
-})
 app.listen(process.env.PORT || 3000,()=>{
     console.log('app run')
 })
