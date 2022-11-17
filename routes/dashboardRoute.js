@@ -43,20 +43,24 @@ router.get('/assign/:id',(req,res)=>{
         })
     }
 })
-router.get('/tasks',(req,res)=>{
+router.get('/tasks', ensureAuthenticated, async(req,res)=>{
     var tasks = req.user.assignedTasks
     
     if(tasks.length > 0){
         var b = []
+
         for(let i =0; i<tasks.length; i++){
-            setTimeout(async function() {
-              let task = await Task.findById(tasks[i])
-              b.push(task)
-            }, 2000)
-          }
-        res.render('dashboard/tasks',{
-            task: b
-        })
+            let task = await Task.findById(tasks[i])
+            console.log(task)
+            b.push(task)
+        }
+        
+        setTimeout(async ()=>{
+            console.log(b)
+            res.render('dashboard/tasks',{
+                task: b
+            })
+        }, 500)
 
     }else{
         res.render('dashboard/tasks',{
