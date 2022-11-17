@@ -1,0 +1,35 @@
+<%- include('../partials/nav.ejs') %>
+<div class="shop-div">
+    <center>
+        <h1 style="font-size: 3.4vw;">
+            Your Assigned Tasks
+        </h1>
+    </center>
+    <div class="grid">
+        <% if(task.length > 0){ %>
+        <% for (var i = 0; i < task.length; i++){ %>
+            <% if (task[i]['isDone'] == false ){%>
+                <div class="blob">
+                    <h2>
+                        <%= task[i]['title'] %>
+                    </h2>
+                    <p>
+                        <%= task[i]['description'] %> 
+                    </p>
+                    <div style="display: flex;">
+                        <form action="/dashboard/user/done" method="post">
+                            <input type="hidden" name="reward" value="<%=task[i]['reward']%>" id="reward">
+                            <input type="hidden" name="exp" value="<%=task[i]['exp']%>" id="exp">
+                            <input type="hidden" name="id" value="<%=task[i]['_id']%>" id="id">
+                            <input type="submit" value="Done">
+                        </form>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+        <% } else { %>
+            <p style="width: 125vh; font-size: 2.5vw; text-align: center;">No tasks
+            </p>    
+        <% } %>
+    </div>
+</div>

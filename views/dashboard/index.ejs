@@ -41,6 +41,7 @@
                     </p>
                     <form action="/dashboard/assign/<%= tasks[i].id %>" method="post">
                         <input type="hidden" name="task" value="<%= tasks[i].id %>">
+                        <input type="hidden" name="tasks" value="<%= user.assignedTasks %>">
                         <input type="submit" value="Assign" class="submit">
                     </form>
                 </div>

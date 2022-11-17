@@ -2,6 +2,7 @@ const router = require('express').Router()
 const User = require('../models/userSchema')
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
+
 const {
     ensureAuthenticated,
     forwardAuthenticated
@@ -127,5 +128,4 @@ router.get('/logout',(req,res)=>{
     req.logout();
     res.redirect('/login');
 })
-
 module.exports = router

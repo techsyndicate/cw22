@@ -73,7 +73,8 @@ body{
     margin-left: 32.5vw;
     border-radius: 10px;
 }
-.task-div,.tasks-div,.user-admin{
+.task-div,.tasks-div,.user-admin,
+.chatroom{
     font-family: 'Outfit', sans-serif;
     width: 65%;
     height: 90vh;
@@ -198,7 +199,8 @@ body{
 }
 .task-form .submit,
 .ban,
-.riddle .submit{
+.riddle .submit,
+.join-div .submit{
     background: #EFB546;
     width: 25vw;
     height:3.5vw;
