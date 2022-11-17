@@ -21,33 +21,48 @@ router.get('/',ensureAuthenticated,(req,res)=>{
     })
    
 })
-router.post('/assign/:id',(req,res)=>{
+router.get('/assign/:id',(req,res)=>{
     let id = req.params.id
-    var {task,tasks} = req.body 
-    var updated = req.user.assignedTasks 
-    console.log(updated)
-    User.findOneAndUpdate({_id:req.user._id},{$set : {assignedTasks:updated}},{new:true})
-    .then(user=>{
-        console.log('assigned')
-        res.redirect('/dashboard/tasks')
-    })
+    let tasks = req.user.assignedTasks
+    if (tasks.length > 0){
+        tasks.push(id)
+        User.findOneAndUpdate({_id: req.user._id},{$set:{
+            assignedTasks: tasks
+        }},{new:true})
+        .then(()=>{
+            res.redirect('/dashboard/tasks')
+        })
+    }
+    else{
+        tasks = [id]
+        User.findOneAndUpdate({_id: req.user._id},{$set:{
+            assignedTasks: tasks
+        }},{new:true})
+        .then(()=>{
+            res.redirect('/dashboard/tasks')
+        })
+    }
 })
 router.get('/tasks',(req,res)=>{
     var tasks = req.user.assignedTasks
-    var show = []
-    tasks.forEach(element => {
-        Task.findOne({_id: element},(err,user)=>{
-            if (err)  throw err;
-            if (user){
-                    show.push(user)
-                    res.render('dashboard/tasks',{
-                        task: show,
-                        user: req.user
-                    })
-                    console.log(show)
-            }
+    
+    if(tasks.length > 0){
+        var b = []
+        for(let i =0; i<tasks.length; i++){
+            setTimeout(async function() {
+              let task = await Task.findById(tasks[i])
+              b.push(task)
+            }, 2000)
+          }
+        res.render('dashboard/tasks',{
+            task: b
         })
-    });
+
+    }else{
+        res.render('dashboard/tasks',{
+            msg: 'No jobs taken'
+        })
+    }
 })
 router.post('/location',  (req, res) => {
     const {currentPosition} = req.body

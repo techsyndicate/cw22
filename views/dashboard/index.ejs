@@ -39,11 +39,8 @@
                     <p style="margin-top: 2.5vw;">
                         EXP: <%= tasks[i].exp %> REWARD: <%= tasks[i].reward %>
                     </p>
-                    <form action="/dashboard/assign/<%= tasks[i].id %>" method="post">
-                        <input type="hidden" name="task" value="<%= tasks[i].id %>">
-                        <input type="hidden" name="tasks" value="<%= user.assignedTasks %>">
-                        <input type="submit" value="Assign" class="submit">
-                    </form>
+                    <a href="/dashboard/assign/<%= tasks[i].id %>"style="text-align: center; padding-top:.5vw; text-decoration: none; color: #111;" class="submit">
+                    Assign</a>
                 </div>
             <% } %>
         <% } else { %>
@@ -54,7 +51,7 @@
     </div>
     <div class="user-tasks"></div>
 </div>
-<div class="poster-div">
+<div class="poster-div" style="margin-top: -56vw;">
     <h1>
         Events
     </h1>
